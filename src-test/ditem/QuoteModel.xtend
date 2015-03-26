@@ -1,0 +1,5 @@
+package ditem
+
+class QuoteModel {
+	
+}

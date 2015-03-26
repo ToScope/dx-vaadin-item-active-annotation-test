@@ -1,0 +1,11 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: Active Annotations Example Client
+Bundle-SymbolicName: de.tfr.thesis.xtend.active_annotations.test
+Bundle-Version: 2.7.3.qualifier
+Bundle-RequiredExecutionEnvironment: JavaSE-1.6
+Require-Bundle: org.eclipse.xtend.lib,
+ com.google.guava;bundle-version="[10.0.1,19.0.0)",
+ org.eclipse.xtext.xbase.lib
+Import-Package: org.eclipse.xtend.lib
+

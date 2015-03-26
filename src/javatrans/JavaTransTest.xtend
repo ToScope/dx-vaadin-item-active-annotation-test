@@ -1,0 +1,5 @@
+package javatrans
+
+class JavaTransTest {
+	
+}
