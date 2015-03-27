@@ -42,9 +42,9 @@ public class CopyOfPersonItem extends AbstractBeanItemBase<Person> implements Se
   
   public CopyOfPersonItem(final Person bean) {
     super(bean);
-    _lastNameProperty = new DItemProperty<String>(bean.getLastName(), String.class, bean::getLastName, bean::setLastName, "lastName");
-    _firstNameProperty = new DItemProperty<String>(bean.getFirstName(), String.class, bean::getFirstName, bean::setFirstName, "firstName");
-    _yearProperty = new DItemProperty<Integer>(bean.getYear(), Integer.class, bean::getYear, bean::setYear, "year");
+    _lastNameProperty = new DItemProperty<String>( String.class, bean::getLastName, bean::setLastName, "lastName");
+    _firstNameProperty = new DItemProperty<String>( String.class, bean::getFirstName, bean::setFirstName, "firstName");
+    _yearProperty = new DItemProperty<Integer>( Integer.class, bean::getYear, bean::setYear, "year");
     _addressProperty=new ditem.AddressItem(bean.getAddress());
     initBeanProperties( _lastNameProperty  ,_firstNameProperty,_yearProperty);
   }

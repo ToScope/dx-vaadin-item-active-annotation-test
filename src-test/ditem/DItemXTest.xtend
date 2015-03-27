@@ -81,7 +81,7 @@ class DItemUnitTest {
 		item.nameProp.value = "Next Quote"
 		listener.verify(1.times).valueChange(any)
 	}
-	
+
 	def testPropertyChangeListenerOnModelAcces() {
 		val listener = mock(ValueChangeListener)
 		item.nameProp.addValueChangeListener(listener)
@@ -125,8 +125,21 @@ class DItemUnitTest {
 
 	def itemToString() {
 		item.toString => "Quote{name:Quote Hard Drive, price:42.0}"
-		item.addItemProperty(newProperty("test") )
+		item.addItemProperty(newProperty("test"))
 		item.toString => "Quote{name:Quote Hard Drive, price:42.0, test:test}"
+	}
+
+	def derivedPropertyValue() {
+			item.personProp.fullNameProp => "Max Mustermann"
+			item.personProp.firstNameProp.value = "Eva"
+			item.personProp.fullNameProp => "Eva Mustermann"
+	}
+
+	def derivedPropertyListener() {
+		val listener = mock(ValueChangeListener)
+		item.personProp.fullNameProp.addValueChangeListener(listener)
+		item.personProp.firstNameProp.value = "Eva"
+		listener.verify(1.times).valueChange(any)
 	}
 
 	def static newQuoteMock() {
@@ -154,13 +167,13 @@ class DItemUnitTest {
 	}
 
 	def static void operator_doubleArrow(DItemProperty<?> property, String expected) {
-		 property.value.toString => expected
+		property.value.toString => expected
 	}
 
 	def static <T> IdentableValueProperty<T> newProperty(T t, String id) {
 		return new IdentableValueProperty(t, id)
 	}
-	
+
 	def static <T> IdentableValueProperty<T> newProperty(T t) {
 		return new IdentableValueProperty(t, t.toString)
 	}
