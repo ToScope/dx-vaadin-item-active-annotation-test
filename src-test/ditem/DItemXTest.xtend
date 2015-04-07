@@ -4,8 +4,6 @@ import com.vaadin.data.Item.PropertySetChangeListener
 import com.vaadin.data.Property.ValueChangeListener
 import de.oehme.xtend.junit.Hamcrest
 import de.oehme.xtend.junit.JUnit
-import ditem.item.AbstractItemBase.PropertySetChangeEvent
-import ditem.property.DItemProperty
 import ditem.property.IdentableValueProperty
 import ditem.testutil.EmptyBean
 import ditem.testutil.EmptyBeanItem
@@ -14,6 +12,8 @@ import org.junit.Before
 import static org.mockito.Matchers.*
 
 import static extension org.mockito.Mockito.*
+import ditem.item.ItemPropertySetChangeEvent
+import ditem.property.ValueProperty
 
 /***
  * Tests for the Do
@@ -89,18 +89,18 @@ class DItemUnitTest {
 		listener.verify(1.times).valueChange(any)
 	}
 
-	def testPropertySetChangeListener() {
+	def propertySetChangeListener() {
 		val listener = mock(PropertySetChangeListener)
 		item.addPropertySetChangeListener(listener)
 		item.addItemProperty(newProperty("test"))
-		listener.verify.itemPropertySetChange(new PropertySetChangeEvent(item))
+		listener.verify.itemPropertySetChange(new ItemPropertySetChangeEvent(item))
 	}
 
 	def getItemPropertyIds() {
 		item.itemPropertyIds => #{"name", "price"}
 	}
 
-	def testAddProperty() {
+	def addProperty() {
 		val property = newProperty("test")
 		item.addItemProperty(property)
 		item.itemPropertyIds.contains("test") => true
@@ -113,7 +113,7 @@ class DItemUnitTest {
 		item.addItemProperty(property) => false
 	}
 
-	def testNullProperies() {
+	def nullProperies() {
 		val bean = new EmptyBean()
 		val item = new EmptyBeanItem(bean)
 
@@ -130,9 +130,9 @@ class DItemUnitTest {
 	}
 
 	def derivedPropertyValue() {
-			item.personProp.fullNameProp => "Max Mustermann"
-			item.personProp.firstNameProp.value = "Eva"
-			item.personProp.fullNameProp => "Eva Mustermann"
+		item.personProp.fullNameProp => "Max Mustermann"
+		item.personProp.firstNameProp.value = "Eva"
+		item.personProp.fullNameProp => "Eva Mustermann"
 	}
 
 	def derivedPropertyListener() {
@@ -142,10 +142,17 @@ class DItemUnitTest {
 		listener.verify(1.times).valueChange(any)
 	}
 
+	def listProperties() {
+		item.dealerProp.head => "naumann"
+		item.dealerProp.addItemProperty(new ValueProperty<String>("licotec"))
+		item.dealerProp.last => "licotec"
+	}
+
 	def static newQuoteMock() {
 		val quote = new Quote() => [
 			name = "Quote Hard Drive"
 			price = 42
+			dealer = #["naumann", "talksky", "intertech"]
 		]
 		val person = new Person() => [
 			year = 1988
@@ -166,7 +173,7 @@ class DItemUnitTest {
 		actual.toString => expected
 	}
 
-	def static void operator_doubleArrow(DItemProperty<?> property, String expected) {
+	def static void operator_doubleArrow(com.vaadin.data.Property<?> property, String expected) {
 		property.value.toString => expected
 	}
 
