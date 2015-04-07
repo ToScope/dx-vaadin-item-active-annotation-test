@@ -3,15 +3,15 @@ package ditem
 import ditem.processor.DItem
 import metamodel.Deep
 import ditem.property.Derived
-import ditem._person._lastName
-import ditem._person._firstName
+import java.util.List
 
 @DItem
 class Person {
 
-	String lastName
-	String firstName
+	String lastName;
+	String firstName;
 	int year
+//	List<String> items
 
 	@Deep
 	Address address
@@ -21,7 +21,7 @@ class Person {
 		
 	@Derived(_lastName, _firstName)
 	def String fullName() {
-		firstName + " " + lastName
+		return firstName + " " + lastName;
 	}
 	
 }

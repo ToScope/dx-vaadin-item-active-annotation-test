@@ -89,7 +89,7 @@ class DItemUnitTest {
 		listener.verify(1.times).valueChange(any)
 	}
 
-	def testPropertySetChangeListener() {
+	def propertySetChangeListener() {
 		val listener = mock(PropertySetChangeListener)
 		item.addPropertySetChangeListener(listener)
 		item.addItemProperty(newProperty("test"))
@@ -100,7 +100,7 @@ class DItemUnitTest {
 		item.itemPropertyIds => #{"name", "price"}
 	}
 
-	def testAddProperty() {
+	def addProperty() {
 		val property = newProperty("test")
 		item.addItemProperty(property)
 		item.itemPropertyIds.contains("test") => true
@@ -113,7 +113,7 @@ class DItemUnitTest {
 		item.addItemProperty(property) => false
 	}
 
-	def testNullProperies() {
+	def nullProperies() {
 		val bean = new EmptyBean()
 		val item = new EmptyBeanItem(bean)
 
