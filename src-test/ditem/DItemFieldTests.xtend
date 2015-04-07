@@ -6,5 +6,4 @@ import ditem.processor.DItem
 class DItemFieldTests {
 	String name
 	String gender = "sd"
-	static int i=42
 }
