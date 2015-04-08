@@ -11,4 +11,6 @@ class Quote {
 	List<String> dealer 
 	@Deep
 	Person person
+	
+	List<Address> addresse
 }

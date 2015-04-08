@@ -29,6 +29,7 @@ class DItemCompileDebugTest {
 				class Quotes {
 					int a
 					List<String> titles
+					List<String> companies
 				}
 			'''.assertCompilesTo(
 			'''

@@ -118,9 +118,10 @@ class DItemUnitTest {
 		val item = new EmptyBeanItem(bean)
 
 		item.itemPropertyIds => #{}
-		item.getItemProperty("") => is(nullValue)
+		item.getItemProperty("") => nullValue
 		item.toString => notNullValue
 		item.bean.toString => notNullValue
+		item.addListener[]
 	}
 
 	def itemToString() {
