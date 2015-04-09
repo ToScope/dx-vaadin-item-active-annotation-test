@@ -16,6 +16,8 @@ class Person {
 	@Deep
 	Address address
 	
+	List<Address> addresses
+	
 	//val static pack ="asd"
 	
 		
