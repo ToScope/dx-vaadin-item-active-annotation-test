@@ -11,6 +11,11 @@ class Person {
 	String lastName
 	String firstName
 	
+	@Derived(_firstName, _lastName)
+	def String fullName() {
+		return firstName + " " + lastName;
+	}
+	
 	int year
 
 	@Deep
@@ -21,9 +26,5 @@ class Person {
 	//val static pack ="asd"
 	
 		
-	@Derived(_lastName, _firstName)
-	def String fullName() {
-		return firstName + " " + lastName;
-	}
 	
 }

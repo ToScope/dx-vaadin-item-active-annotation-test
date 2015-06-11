@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <classpath>
-	<classpathentry kind="src" path="target/xtend-gen/main"/>
 	<classpathentry including="**/*.java" kind="src" path="src"/>
 	<classpathentry kind="src" path="target/xtend-gen/test"/>
 	<classpathentry kind="con" path="org.eclipse.pde.core.requiredPlugins"/>
